@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+        <style>
+            table, td  {
+              border: 1px solid grey;
+              border-collapse: collapse;
+              padding: 5px;
+            }
+            
+        </style>
+    </head>
+    
+    <body ng-app="myApp" ng-controller="customersCtrl">
+        <table>
+            <tr ng-repeat="x in names">
+              <td ng-if="$odd" style="background-color:#f1f1f1">{{ $index + 1 }}</td>
+              <td ng-if="$even">{{ $index + 1 }}</td>
+              <td ng-if="$odd" style="background-color:#f1f1f1">{{ x.Name }}</td>
+              <td ng-if="$even">{{ x.Name }}</td>
+              <td ng-if="$odd" style="background-color:#f1f1f1">{{ x.Country }}</td>
+              <td ng-if="$even">{{ x.Country }}</td>
+            </tr>
+        </table>
+        <p></p>
+        <table>
+            <tr ng-repeat="x in names">
+              <td ng-if="x.Name==='John'" style="font-weight:bold">{{ x.Name }}</td>
+              <td ng-if="x.Name!=='John'" >{{ x.Name }}</td>
+              <td >{{ x.Country }}</td>
+            </tr>
+        </table>
+        <script>
+            angular.module("myApp",[]).controller("customersCtrl",function($scope){
+                $scope.names = [
+                    {Name:"John",Country:"USA"},
+                    {Name:"Eva",Country:"Slovakia"},
+                    {Name:"Katalin",Country:"Hungary"},
+                    {Name:"Günter",Country:"Germany"},
+                    {Name:"Karl",Country:"Austria"}
+                ];
+            });
+        </script>
+    </body>
+    
+</html>

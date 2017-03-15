@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.min.js"></script>
+    </head>
+    <body>
+        <div ng-app="myApp" ng-controller="myCtrl">
+            <table>
+                <tr>
+                    <th ng-click="myOrderBy('nev')">Név</th>
+                    <th ng-click="myOrderBy('kor')">Életkor</th>
+                </tr>
+                <tr ng-repeat="x in csalad | orderBy:ob">
+                    <td> {{ x.nev}} </td>
+                    <td> {{ x.kor}} </td>
+                </tr>
+            </table>
+        </div>
+        <script>
+        angular.module('myApp',[]).controller('myCtrl',function($scope){
+            $scope.csalad = [
+                {nev:'Annika',kor:4},
+                {nev:'Ádám',kor:1},
+                {nev:'Anyuci',kor:38},
+                {nev:'Apuci',kor:42}
+            ];
+            
+            $scope.myOrderBy = function(header) {
+                $scope.ob = header;
+                console.log('header ' + header +' clicked');  
+            };
+            
+        });
+        </script>
+    </body>
+    
+</html>

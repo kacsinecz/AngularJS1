@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    </head>
+    <body ng-app="myApp" ng-controller="myCtrl">
+        <div >
+            <select ng-model="selectedName" ng-options="x for x in names" ng-selected="Emil"></select>
+        </div>
+         
+        <p></p>
+        Click here to select BMW as your favourite car:
+        <input type="checkbox" ng-model="mySel">
+
+        <p>My Favourite car:</p>
+
+        <select>
+        <option>Volvo</option>
+        <option ng-selected="mySel">BMW</option>
+        <option>Ford</option> 
+        </select>
+        
+        <!--Dropdowns made with ng-options allows the selected value to be an object:-->
+        <p></p>
+        <select ng-model="selectedCar" ng-options="x.model for x in cars"></select>
+        <h1>You selected: {{selectedCar.model}}</h1>
+        <p>Its color is: {{selectedCar.color}}</p>
+        
+        <p></p>        
+        <!-- we can also use an object as data source -->
+        <!-- using an object as the data source, x represents the key, and y represents the value -->
+        <select ng-model="selCar" ng-options="x for (x, y) in cars_obj">
+        </select>
+        <h1>You selected: {{selCar}}</h1>
+
+        <!-- The value in a key-value pair can also be an object -->
+        <select ng-model="seCar" ng-options="y.brand for (x, y) in cars_val_obj">
+        </select>
+        <h1>You selected: {{seCar.brand}}</h1>
+        <h2>Model: {{seCar.model}}</h2>
+        <h3>Color: {{seCar.color}}</h3>
+        
+        <script>
+            var app = angular.module('myApp', []);
+            app.controller('myCtrl', function($scope) {
+                $scope.names = ["Emil", "Tobias", "Linus"];
+            
+                $scope.cars = [
+                    {model : "Ford Mustang", color : "red"},
+                    {model : "Fiat 500", color : "white"},
+                    {model : "Volvo XC90", color : "black"}
+                ];
+                
+                $scope.cars_obj = {
+                    car01 : "Ford",
+                    car02 : "Fiat",
+                    car03 : "Volvo"
+                };
+                
+                $scope.cars_val_obj = {
+                    car01 : {brand : "Ford", model : "Mustang", color : "red"},
+                    car02 : {brand : "Fiat", model : "500", color : "white"},
+                    car03 : {brand : "Volvo", model : "XC90", color : "black"}
+                };
+            });
+        </script>
+    </body>
+</html>

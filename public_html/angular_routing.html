@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+
+<body ng-app="myApp">
+
+<p><a href="#/">Main</a></p>
+
+<a href="#apple">Alma</a>
+<a href="#pear">Körte</a>
+<a href="#plum">Szilva</a>
+
+<p>Válassz gyümölcsöt!</p>
+
+<div ng-view></div>
+
+<script>
+var app = angular.module("myApp", ["ngRoute"]);
+app.config(function($routeProvider) {
+    $routeProvider
+    .when("/", {
+        templateUrl : "main.htm"
+    })
+    .when("/apple", {
+        templateUrl : "fruits/apple.html"
+    })
+    .when("/pear", {
+        templateUrl : "fruits/pear.html"
+    })
+    .when("/plum", {
+        templateUrl : "fruits/plum.html"
+    })
+    ;
+});
+</script>
+
+</body>
+</html>

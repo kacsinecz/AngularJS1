@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Test of the custom filtering</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.min.js"></script>
+    </head>
+    <body data-ng-app="myApp" data-ng-controller="myCtrl">
+        <input data-ng-model="filt" id="ff">
+        <p></p>
+        <ul>
+            <li data-ng-repeat="x in list">{{x | myFilter}}</li>
+        </ul>
+        <script>
+            var app = angular.module("myApp",[]);
+            app.controller("myCtrl",function($scope){
+                $scope.list = [
+                    "Mercedes",
+                    "Toyota",
+                    "Škoda",
+                    "Kia",
+                    "Opel",
+                    "Wolkswagen",
+                    "Lexus",
+                    "BMW",
+					"Aston Martin"
+                ];
+                $scope.filt = "Mer";
+            });
+            
+            app.filter("myFilter",function(){
+                return function(x) {
+                    if (x.includes(ff.value)) 
+                        return '<b>' + x + '</b>';
+                    else                   
+                        return x;
+                    
+                };
+            });
+            
+        </script>
+    </body>
+    
+</html>
